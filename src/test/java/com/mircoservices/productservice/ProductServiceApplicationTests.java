@@ -58,4 +58,11 @@ class ProductServiceApplicationTests {
                 .price(BigDecimal.valueOf(1999))
                 .build();
     }
+
+    @Test
+    void shouldGetAllProducts() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/product"))
+                .andExpect(status().isOk());
+        Assertions.assertEquals(1, productRepository.findAll().size());
+    }
 }
